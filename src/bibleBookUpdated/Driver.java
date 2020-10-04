@@ -9,10 +9,20 @@ public class Driver
 		try
 		{
 			Scanner fileIn = new Scanner(new File(System.getProperty("user.dir") + "/src/bibleBookUpdated/input.dat"));
+			int numLines = 0;
 			while(fileIn.hasNext())
 			{
-				NewTestamentBook a = new NewTestamentBook(fileIn.nextLine());
-				a.display();
+				numLines++;
+				fileIn.nextLine();
+			}
+			NewTestamentBook[] books = new NewTestamentBook[numLines];
+			fileIn.close();
+			fileIn = new Scanner(new File(System.getProperty("user.dir") + "/src/bibleBookUpdated/input.dat"));
+			int pos = 0;
+			while(fileIn.hasNext())
+			{
+				books[pos] = new NewTestamentBook(fileIn.nextLine());
+				books[pos].display();
 			}
 		}
 		catch(Exception e)
